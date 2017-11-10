@@ -173,10 +173,6 @@ const SDK = {
             });
         },
 
-        currentUser: () => {
-            return SDK.Storage.load("user");
-        },
-
         createUser: (username, password, cb) => {
             SDK.request({
                 data: {

@@ -1,18 +1,4 @@
-$(document).ready(() => {
-    $("#logOut").click(()=>{
 
-        SDK.User.logOut((err, data) =>{
-            if(err && err.xhr.status === 401){
-                $(".form-group").addClass("has-error");
-            } else if(err){
-                console.log("Noe gikk galt");
-            } else {
-                window.href.location = "index.html";
-            }
-        })
-
-    });
-});
 
 $(document).ready(() =>{
 
