@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CBS Kantine</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="lib/js/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-light" style="background-color: #ededed;">
+    <a class="navbar-brand" href="#">Home</a>
+    <a class="navbar-brand" href="menu.html">Menu</a>
+    <a class="navbar-brand" href="checkout.html">Checkout</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+                <a class="navbar-brand" id="logOut"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row" id="nav-container"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 img-container"></div>
+        <div class="col-lg-10 profile-info"></div>
+        <div class="col-lg-12">
+
+            <h3>Orders</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody id="basket-tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">2017 - All rights reserved - Martin Gilje Sorbo</p>
+        </div>
+    </footer>
+
+    <script src="js/sdk.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="lib/js/bootstrap.js"></script>
+</body>
+</html>

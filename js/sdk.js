@@ -58,11 +58,10 @@ const SDK = {
                   cb(null, data);
             })
         },
-        makeReady: (id, data, cb) => {
+        makeReady: (id, cb) => {
           SDK.request({
               method: "POST",
               url: "/staff/makeReady/"+id,
-              data: data,
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -75,7 +74,7 @@ const SDK = {
           })
         },
 
-        getByUserId: () =>{
+        getByUserId: (cb) =>{
           SDK.request({
               method: "GET",
               url: "/user/getOrdersById" + SDK.Storage.load("user_id"),
@@ -171,6 +170,10 @@ const SDK = {
 
                 cb(null, data);
             });
+        },
+
+        current: () => {
+          return SDK.Storage.load("user");
         },
 
         createUser: (username, password, cb) => {

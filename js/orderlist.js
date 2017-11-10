@@ -83,7 +83,7 @@ $(document).ready(() => {
                       </table>
 
                       </dl>
-                      <input type="button" class="btn btn-default" value="Order done" id="makeOrderReady">
+                      <input type="button" class="btn btn-default makeOrderReady" data-order-id="${order.orderId}" value="Order done">
                     </div>
                 </div>
             </div>
@@ -91,5 +91,18 @@ $(document).ready(() => {
                 $orderList.append(orderHtml);
             });
 
+            $(".makeOrderReady").click(function(){
+                console.log("hmm");
+              const orderId = $(this).data("order-id");
+              SDK.Orders.makeReady(orderId, (err) =>{
+                  if(err) throw err;
+                  window.location.reload();
+              });
+
+            })
+
     })
+
+
 });
+
