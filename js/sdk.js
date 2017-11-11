@@ -77,7 +77,7 @@ const SDK = {
         getByUserId: (cb) =>{
           SDK.request({
               method: "GET",
-              url: "/user/getOrdersById" + SDK.Storage.load("user_id"),
+              url: "/user/getOrdersById/" + SDK.Storage.load("user_id"),
               headers: {Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
                 (err, data) => {
@@ -167,6 +167,7 @@ const SDK = {
                 SDK.Storage.persist("BearerToken", data.token);
                 SDK.Storage.persist("user_id", data.user_id);
                 SDK.Storage.persist("isPersonel", data.isPersonel);
+                SDK.Storage.persist("currentUser", data);
 
                 cb(null, data);
             });
@@ -209,8 +210,8 @@ const SDK = {
                     return cb(err)
                 }
                 SDK.Storage.remove("BearerToken");
-                SDK.Storage.remove("user_id");
                 SDK.Storage.remove("isPersonel");
+                SDK.Storage.remove("currentUser")
 
                 cb(null, data);
             })

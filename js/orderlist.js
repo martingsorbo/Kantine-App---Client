@@ -6,11 +6,6 @@ $(document).ready(() => {
     SDK.Orders.getAll((err, orders) => {
         if(err) throw err;
 
-
-
-
-
-
             orders.forEach((order) =>{
                 let $itemName = "";
                 let $itemPrice = "";
@@ -37,9 +32,6 @@ $(document).ready(() => {
                     $itemPrice += items[g].item.itemPrice + "<br>";
                     $itemTotal += items[g].item.itemPrice * items[g].count;
                 }
-
-
-
 
                 const orderHtml = `
         <div class="col-lg-4 book-container">
@@ -92,7 +84,6 @@ $(document).ready(() => {
             });
 
             $(".makeOrderReady").click(function(){
-                console.log("hmm");
               const orderId = $(this).data("order-id");
               SDK.Orders.makeReady(orderId, (err) =>{
                   if(err) throw err;

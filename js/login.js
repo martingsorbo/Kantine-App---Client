@@ -15,7 +15,7 @@ $(document).ready(() => {
                 if(user.isPersonel == 1) {
                     window.location.href = "orderlist.html";
                 } else {
-                    window.location.href = "menu.html";
+                    window.location.href = "profile.html";
                 }
             }
         });
