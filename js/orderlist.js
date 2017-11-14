@@ -11,6 +11,10 @@ $(document).ready(() => {
                 let $itemPrice = "";
                 let $itemCount = "";
                 let $itemTotal = 0;
+                let status = "";
+
+                if(order.isReady){status ="Klar";}
+                else{status = "Ikke klar";}
 
                 let items = [];
                 for (let i = 0; i<order.items.length; i++){
@@ -45,7 +49,7 @@ $(document).ready(() => {
                         <dt>Order time:</dt>
                         <dd>${order.orderTime}</dd>
                         <dt>Is order ready:</dt>
-                        <dd>${order.isReady}</dd>
+                        <dd>${status}</dd>
                         <dt>Items:</dt>
                       <table class="table">
                         <thead>

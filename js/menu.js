@@ -1,5 +1,3 @@
-
-
 $(document).ready(() =>{
 
     const $itemList = $("#item-list");

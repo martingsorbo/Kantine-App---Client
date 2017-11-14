@@ -21,19 +21,15 @@ $(document).ready(() => {
         });
     });
 
-});
-$(document).ready(() => {
-    $("#createViewBtn").click(()=>{
-        window.location.href = "createuser.html";
-    });
-});
-
-$(document).ready(() => {
     $("#logOut").click(()=>{
-
 
         SDK.User.logOut();
         window.location.href = "index.html";
 
     });
+
+    $("#createViewBtn").click(()=>{
+        window.location.href = "createuser.html";
+    });
+
 });

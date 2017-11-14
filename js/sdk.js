@@ -89,6 +89,16 @@ const SDK = {
             })
         },
 
+        viewItems: (order) => {
+            let orderedItems = SDK.Storage.load("orderedItems")
+
+            if(!orderedItems){
+                return SDK.Storage.persist("orderedItems", order);
+            }
+
+            SDK.Storage.persist("orderedItems", orderedItems)
+        }
+
 
 
     },
@@ -195,7 +205,6 @@ const SDK = {
                 cb(null, data);
             });
         },
-        //Endre på denne se på muneeb sin løsning
         logOut: (cb) => {
             SDK.request({
                 url: "/start/logout",
@@ -210,13 +219,15 @@ const SDK = {
                     return cb(err)
                 }
                 SDK.Storage.remove("BearerToken");
+                SDK.Storage.remove("user_id");
                 SDK.Storage.remove("isPersonel");
-                SDK.Storage.remove("currentUser")
+                SDK.Storage.remove("currentUser");
 
                 cb(null, data);
             })
 
         },
+
     },
 
     Storage: {
