@@ -38,7 +38,6 @@ $(document).ready(() =>{
 
         $("#clear-basket-button").click(() => {
             SDK.Storage.remove("basket");
-            loadBasket();
             window.location.reload();
         });
 
@@ -52,7 +51,6 @@ $(document).ready(() =>{
 
                 $("#order-alert-container").find(".alert-success").show();
                 SDK.Storage.remove("basket");
-                loadBasket();
                 });
         });
 

@@ -11,14 +11,14 @@ const SDK = {
         }
 
         $.ajax({
-            url: SDK.serverURL + options.url,
+            url: encodeURI(SDK.serverURL + options.url),
             method: options.method,
             headers: headers,
             contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify(options.data),
+            dataType: "text",
+            data: SDK.Encryption.encryptDecrypt(JSON.stringify(options.data)),
             success: (data, status, xhr) => {
-                cb(null, data, status, xhr);
+                cb(null, JSON.parse(SDK.Encryption.encryptDecrypt(data)), status, xhr);
             },
             error: (xhr, status, errorThrown) => {
                 cb({xhr: xhr, status: status, error: errorThrown});
@@ -48,6 +48,7 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/staff/getOrders",
+              data: SDK.Storage.load("user_id"),
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -62,6 +63,7 @@ const SDK = {
           SDK.request({
               method: "POST",
               url: "/staff/makeReady/"+id,
+              data: SDK.Storage.load("user_id"),
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -78,6 +80,7 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/user/getOrdersById/" + SDK.Storage.load("user_id"),
+              data: SDK.Storage.load("user_id"),
               headers: {Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
                 (err, data) => {
@@ -107,6 +110,7 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/user/getItems",
+                data: SDK.Storage.load("user_id"),
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")}},
                 (err, data) => {
                     if (err) return cb(err);
@@ -162,12 +166,13 @@ const SDK = {
     User: {
         login: (username, password, cb) => {
             SDK.request({
+
+                url: "/start/login",
+                method: "POST",
                 data: {
                     username: username,
                     password: password
-                },
-                url: "/start/login",
-                method: "POST"
+                }
             }, (err, data) => {
                 // Login error
                 if (err) {
@@ -181,10 +186,6 @@ const SDK = {
 
                 cb(null, data);
             });
-        },
-
-        current: () => {
-          return SDK.Storage.load("user");
         },
 
         createUser: (username, password, cb) => {
@@ -212,19 +213,20 @@ const SDK = {
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")},
                 data: {
                     "user_id": SDK.Storage.load("user_id")
-                },
+                }
 
             }, (err, data) => {
                 if (err) {
                     return cb(err)
                 }
-                SDK.Storage.remove("BearerToken");
-                SDK.Storage.remove("user_id");
-                SDK.Storage.remove("isPersonel");
-                SDK.Storage.remove("currentUser");
 
                 cb(null, data);
-            })
+            });
+            SDK.Storage.remove("BearerToken");
+            SDK.Storage.remove("user_id");
+            SDK.Storage.remove("isPersonel");
+            SDK.Storage.remove("currentUser");
+
 
         },
 
@@ -233,10 +235,10 @@ const SDK = {
     Storage: {
     prefix: "KantineSDK",
     persist: (key, value) => {
-        window.localStorage.setItem(SDK.Storage.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
+        sessionStorage.setItem(SDK.Storage.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
     },
     load: (key) => {
-        const val = window.localStorage.getItem(SDK.Storage.prefix + key);
+        const val = sessionStorage.getItem(SDK.Storage.prefix + key);
         try {
             return JSON.parse(val);
         }
@@ -245,8 +247,26 @@ const SDK = {
         }
     },
     remove: (key) => {
-        window.localStorage.removeItem(SDK.Storage.prefix + key);
+        sessionStorage.removeItem(SDK.Storage.prefix + key);
     }
     },
+
+    Encryption: {
+        encryptDecrypt(input) {
+            var enc = true;
+            if(enc){
+                var key = ['Y', 'O', 'L', 'O'];
+                var output = [];
+                for(var i = 0; i < input.length; i++){
+                    var charCode = input.charCodeAt(i) ^ key[i % key.length].charCodeAt(0);
+                    output.push(String.fromCharCode(charCode));
+                }
+                return output.join("");
+            }
+            else{
+                return input;
+            }
+        }
+    }
 
 };

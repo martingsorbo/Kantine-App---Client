@@ -3,10 +3,6 @@ $(document).ready(() => {
     const $basketTBody = $("#basket-tbody");
     const currentUser = SDK.Storage.load("currentUser");
 
-    $(".page-header").html(`
-        <h1>Hi, ${currentUser.username}</h1>
-    `);
-
     $(".profile-info").html(`
         <dl>
             <dt>Username: ${currentUser.username}</dt>
@@ -17,17 +13,13 @@ $(document).ready(() => {
     SDK.Orders.getByUserId((err, orders) => {
         if(err) throw err;
         orders.forEach(order => {
-
-            if(order.isReady){
-                status = "Klar";
-            } else {
-                status = "Ikke klar";
-            }
+            let status = "Klar";
+            if(!order.isReady){status = "Ikke klar";}
 
             $basketTBody.append(`
                 <tr>
                     <td>${order.orderTime}</td><br>
-                    <td><button class="btn btn-primary btn-sm viewItems" data-order-id="${order.orderId}">Åpne</button></td><br>
+                    <td><button class="btn btn-default btn-sm viewItems" data-order-id="${order.orderId}">Åpne</button></td><br>
                     <td>${status}</td><br>
                 </tr>
             `);

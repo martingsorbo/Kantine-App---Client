@@ -6,7 +6,7 @@ $(document).ready(() =>{
         if(err) throw err;
         items.forEach((item) =>{
             const itemHtml = `
-        <div class="col-lg-4 book-container">
+        <div class="col-lg-4 item-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">${item.itemName}</h3>

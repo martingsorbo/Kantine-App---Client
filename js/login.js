@@ -21,10 +21,10 @@ $(document).ready(() => {
         });
     });
 
-    $("#logOut").click(()=>{
-
+    $(".logOut").click(()=>{
         SDK.User.logOut();
         window.location.href = "index.html";
+
 
     });
 

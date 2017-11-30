@@ -10,18 +10,20 @@
 </head>
 <body>
 
-<nav class="navbar navbar-light" style="background-color: #ededed;">
-    <a class="navbar-brand" href="profile.html">Home</a>
-    <a class="navbar-brand" href="menu.html">Menu</a>
-    <a class="navbar-brand" href="checkout.html">Checkout</a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav navbar-right">
+<nav class="navbar">
+        <ul class="nav navbar-left">
             <li class="active">
-                <button class="btn btn-primary" id="logOut">Log ut</button>
+                <a class="navbutton" href="profile.html">Profile</a>
+                <a class="navbutton" href="menu.html">Menu</a>
+                <a class="navbutton" href="checkout.html">Checkout</a>
             </li>
         </ul>
-    </div>
+
+        <ul class="nav navbar-right">
+            <li class="active">
+                <a class="navbutton logOut">Log ut</a>
+            </li>
+        </ul>
 </nav>
 
 <div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -60,16 +62,13 @@
     <div class="row" id="nav-container"></div>
 
     <div class="row">
-        <div class="col-lg-12">
-            <div class="page-header"></div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-lg-2 img-container"></div>
-        <div class="col-lg-10 profile-info"></div>
-        <div class="col-lg-12">
 
-            <h3>Orders</h3>
+        <div class="col-lg-12">
+        <div class="page-header">
+            <h3>Profile</h3>
+        </div>
+            <div class="col-lg-10 profile-info"></div>
             <table class="table">
                 <thead>
                 <tr>
@@ -94,6 +93,7 @@
     </footer>
 
     <script src="js/sdk.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/profile.js"></script>
     <script src="lib/js/bootstrap.js"></script>
 

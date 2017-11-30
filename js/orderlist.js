@@ -11,10 +11,9 @@ $(document).ready(() => {
                 let $itemPrice = "";
                 let $itemCount = "";
                 let $itemTotal = 0;
-                let status = "";
+                let status = "Klar";
 
-                if(order.isReady){status ="Klar";}
-                else{status = "Ikke klar";}
+                if(!order.isReady){status = "Ikke klar";
 
                 let items = [];
                 for (let i = 0; i<order.items.length; i++){
@@ -38,7 +37,7 @@ $(document).ready(() => {
                 }
 
                 const orderHtml = `
-        <div class="col-lg-4 book-container">
+        <div class="col-lg-4 item-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">${order.orderTime}</h3>
@@ -85,8 +84,8 @@ $(document).ready(() => {
             </div>
         </div>`;
                 $orderList.append(orderHtml);
+                }
             });
-
             $(".makeOrderReady").click(function(){
               const orderId = $(this).data("order-id");
               SDK.Orders.makeReady(orderId, (err) =>{

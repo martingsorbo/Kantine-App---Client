@@ -4,10 +4,28 @@
 
     <title>CBS Kantine</title>
     <link rel="stylesheet" href="lib/css/bootstrap.css">
-
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
+
+<nav class="navbar">
+    <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+            <li class="active">
+                <a class="navbutton" href="profile.html">Profile</a>
+                <a class="navbutton" href="menu.html">Menu</a>
+                <a class="navbutton" href="checkout.html">Checkout</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+                <a class="navbutton logOut">Log ut</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="modal fade" id="purchase-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog " role="document">
@@ -45,19 +63,7 @@
 </div>
 
 
-<nav class="navbar navbar-light" style="background-color: #ededed;">
-    <a class="navbar-brand" href="profile.html">Home</a>
-    <a class="navbar-brand" href="menu.html">Menu</a>
-    <a class="navbar-brand" href="checkout.html">Checkout</a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-                <button class="btn btn-primary" id="logOut">Log ut</button>
-            </li>
-        </ul>
-    </div>
-</nav>
 
 <div class="container">
 

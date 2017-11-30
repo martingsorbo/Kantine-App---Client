@@ -1,15 +1,33 @@
-.book-container .panel-body {
+.item-container .panel-body {
     min-height: 242px;
 }
-.book-container img {
+.item-container img {
     height: 120px;
 }
-.book-container .price-label {
+.item-container .price-label {
     font-size: 1.4em;
     font-weight: bold;
 }
 
-.book-container .price-label p {
+.item-container .price-label p {
     margin: 4px 0 0 0;
+}
+
+.navbutton {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    border-color: white;
+}
+
+.navbutton:hover, navbuttton:active {
+    color: grey;
+    cursor: pointer;
+}
+.navbar{
+    background-color: #3e5991;
+    border-radius: 0px;
 }
 
