@@ -20,6 +20,9 @@
     letter-spacing: 2px;
     display: inline-block;
     border-color: white;
+    font-family: Impact, Charcoal, sans-serif;
+    letter-spacing: 2px;
+    font-size: 17px;
 }
 
 .navbutton:hover, navbuttton:active {
@@ -29,5 +32,14 @@
 .navbar{
     background-color: #3e5991;
     border-radius: 0px;
+}
+
+.title {
+    color: #3e5991;
+    text-transform: uppercase;
+    font-family: Impact, Charcoal, sans-serif;
+    letter-spacing: 2px;
+    font-size: 35px;
+
 }
 
