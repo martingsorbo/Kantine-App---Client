@@ -11,7 +11,7 @@ const SDK = {
         }
 
         $.ajax({
-            url: encodeURI(SDK.serverURL + options.url),
+            url: SDK.serverURL + options.url,
             method: options.method,
             headers: headers,
             contentType: "application/json",
@@ -48,7 +48,7 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/staff/getOrders",
-              data: SDK.Storage.load("user_id"),
+              data: "data",
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -63,7 +63,7 @@ const SDK = {
           SDK.request({
               method: "POST",
               url: "/staff/makeReady/"+id,
-              data: SDK.Storage.load("user_id"),
+              data: "data",
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -80,7 +80,7 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/user/getOrdersById/" + SDK.Storage.load("user_id"),
-              data: SDK.Storage.load("user_id"),
+              data: "data",
               headers: {Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
                 (err, data) => {
@@ -110,7 +110,7 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/user/getItems",
-                data: SDK.Storage.load("user_id"),
+                data: "data",
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")}},
                 (err, data) => {
                     if (err) return cb(err);
@@ -211,9 +211,8 @@ const SDK = {
                 url: "/start/logout",
                 method: "POST",
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")},
-                data: {
-                    "user_id": SDK.Storage.load("user_id")
-                }
+                data: "data"
+
 
             }, (err, data) => {
                 if (err) {

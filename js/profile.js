@@ -14,7 +14,8 @@ $(document).ready(() => {
         if(err) throw err;
         orders.forEach(order => {
             let status = "Klar";
-            if(!order.isReady){status = "Ikke klar";}
+            if (!order.isReady) {status = "Ikke klar";}
+
 
             $basketTBody.append(`
                 <tr>
@@ -23,7 +24,6 @@ $(document).ready(() => {
                     <td>${status}</td><br>
                 </tr>
             `);
-
             });
 
         $(".viewItems").click(function() {
