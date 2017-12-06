@@ -21,6 +21,12 @@ $(document).ready(() => {
         });
     });
 
+    $("#inputPassword").keypress(function (e) {
+        if(e.which == 13){
+            $("#loginBtn").click();
+        }
+    });
+
     $(".logOut").click(()=>{
         SDK.User.logOut();
         window.location.href = "index.html";
