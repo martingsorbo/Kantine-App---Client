@@ -1,8 +1,10 @@
 $(document).ready(() =>{
 
+   //set variables to use html code in js
    const $modalTbody = $("#basket-tbody");
    const $checkoutActions = $("#checkout-actions");
 
+   //Method to load the basket in to html table
     function loadBasket() {
         const basket = SDK.Storage.load("basket") || [];
         let total = 0;
@@ -31,16 +33,19 @@ $(document).ready(() =>{
 
 
     }
+
     $checkoutActions.append(`
         <button class="btn btn-success btn-lg" id="checkout-button">Checkout</button>
         `)
        loadBasket();
 
+        //Add function to clear button in checkout
         $("#clear-basket-button").click(() => {
             SDK.Storage.remove("basket");
             window.location.reload();
         });
 
+        //Add function to checkout button
         $("#checkout-button").click(() =>{
             const basket = SDK.Storage.load("basket");
             const orderedItems = basket.map((x) => x.item);

@@ -3,6 +3,7 @@ $(document).ready(() => {
     const $orderList = $("#order-list");
 
 
+    //Function to print out all unready orders
     SDK.Orders.getAll((err, orders) => {
         if(err) throw err;
 
@@ -16,6 +17,7 @@ $(document).ready(() => {
                 if(!order.isReady){status = "Ikke klar";
 
                 let items = [];
+                //Used to be able to print out items in the unfinished orders
                 for (let i = 0; i<order.items.length; i++){
                     let newItem = true;
                     for (let j = 0; j<items.length; j++){
@@ -86,6 +88,7 @@ $(document).ready(() => {
                 $orderList.append(orderHtml);
                 }
             });
+            //Funtion to set orders ready
             $(".makeOrderReady").click(function(){
               const orderId = $(this).data("order-id");
               SDK.Orders.makeReady(orderId, (err) =>{

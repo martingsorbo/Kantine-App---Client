@@ -3,6 +3,7 @@ $(document).ready(() => {
     const $basketTBody = $("#basket-tbody");
     const currentUser = SDK.Storage.load("currentUser");
 
+    //Adds info to div in html
     $(".profile-info").html(`
         <dl>
             <dt>Username: ${currentUser.username}</dt>
@@ -10,6 +11,7 @@ $(document).ready(() => {
         </dl>
     `)
 
+    //Gets all the orders to the specific user
     SDK.Orders.getByUserId((err, orders) => {
         if(err) throw err;
         orders.forEach(order => {
@@ -26,6 +28,7 @@ $(document).ready(() => {
             `);
             });
 
+        //Function to show items in the specific order
         $(".viewItems").click(function() {
             const orderId = $(this).data("order-id");
             const order = orders.find((order) => order.orderId === orderId);
@@ -36,6 +39,7 @@ $(document).ready(() => {
 
     });
 
+    //Used to show the modal with all items in the specific order
     $("#item-modal").on("shown.bs.modal", () => {
         const $modalTbody = $("#modal-tbody");
         let order = SDK.Storage.load("orderedItems");

@@ -1,5 +1,6 @@
 $(document).ready(() => {
 
+    //Add function to login button
     $("#loginBtn").click(() => {
 
         const username = $("#inputUsername").val();
@@ -21,6 +22,7 @@ $(document).ready(() => {
         });
     });
 
+    //Make it possible to login by pressing enter
     $("#inputPassword").keypress(function (e) {
         if(e.which == 13){
             $("#loginBtn").click();

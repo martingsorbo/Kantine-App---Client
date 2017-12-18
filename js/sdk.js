@@ -258,6 +258,7 @@ const SDK = {
     },
 
     //Client side cryption method to encrypt and decrypt data
+    //Method comes from Kyle Banks git repository
     Encryption: {
         encryptDecrypt(input) {
             var enc = true;

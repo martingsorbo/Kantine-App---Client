@@ -1,7 +1,9 @@
 $(document).ready(() => {
 
+    //Add function to create user button
     $("#createBtn").click(() => {
 
+        //Gets values from input fields
         const username = $("#createUsername").val();
         const password = $("#createPassword").val();
         const passwordCheck = $("#checkPassword").val();
