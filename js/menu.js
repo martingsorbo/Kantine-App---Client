@@ -2,7 +2,7 @@ $(document).ready(() =>{
 
     const $itemList = $("#item-list");
 
-    type = 0;
+    let type = 0;
     $("#sandwich").click(() => {
         type = 2;
         loadItems();
