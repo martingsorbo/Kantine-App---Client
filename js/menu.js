@@ -4,38 +4,19 @@ $(document).ready(() =>{
 
     SDK.Items.getItems((err, items) => {
         if(err) throw err;
-        const titleHTML = `
-                    <div>
-                        <Button id="sandwich">Sandwich</Button>
-                        <Button id="dessert">Dessert</Button>
-                        <Button id="drinks">Drinks</Button>
-                    </div>
-                
-                `;
-        $itemList.append(titleHTML);
 
         let type = 0;
         $("#sandwich").click(() => {
+            $itemList.empty();
             type = 2;
-            window.location.reload();
+
+            items.forEach((item) =>{
 
 
-        });
-
-        $("#dessert").click(() => {
-            type = 3;
-            window.location.reload();
-        });
-
-        console.log(type);
-
-        items.forEach((item) =>{
+                if(item.itemType === type) {
 
 
-            if(item.itemType === type) {
-
-
-                const itemHtml = `
+                    const itemHtml = `
         <div class="col-lg-4 item-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -64,12 +45,104 @@ $(document).ready(() =>{
             
             `;
 
-                $itemList.append(itemHtml);
+                    $itemList.append(itemHtml);
 
-            }
+                }
+            });
+
         });
 
+        $("#dessert").click(() => {
+            $itemList.empty();
+            type = 3;
 
+            items.forEach((item) =>{
+
+
+                if(item.itemType === type) {
+
+
+                    const itemHtml = `
+        <div class="col-lg-4 item-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${item.itemName}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-8">
+                      <dl>
+                        <dt>Description</dt>
+                        <dd>${item.itemDescription}</dd>
+                      </dl>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-lg-4 price-label">
+                            <p>Kr. <span class="price-amount">${item.itemPrice}</span></p>
+                        </div>
+                        <div class="col-lg-8 text-right">
+                            <button class="btn btn-success purchase-button" data-item-id="${item.itemId}">Add to basket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            `;
+
+                    $itemList.append(itemHtml);
+
+                }
+            });
+        });
+
+        $("#drinks").click(() => {
+            $itemList.empty();
+            type = 1;
+
+            items.forEach((item) =>{
+
+
+                if(item.itemType === type) {
+
+
+                    const itemHtml = `
+        <div class="col-lg-4 item-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${item.itemName}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-8">
+                      <dl>
+                        <dt>Description</dt>
+                        <dd>${item.itemDescription}</dd>
+                      </dl>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-lg-4 price-label">
+                            <p>Kr. <span class="price-amount">${item.itemPrice}</span></p>
+                        </div>
+                        <div class="col-lg-8 text-right">
+                            <button class="btn btn-success purchase-button" data-item-id="${item.itemId}">Add to basket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            `;
+
+                    $itemList.append(itemHtml);
+
+                }
+            });
+        });
+
+        console.log(type);
 
         $(".purchase-button").click(function() {
             const itemId = $(this).data("item-id");
