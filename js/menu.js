@@ -4,8 +4,38 @@ $(document).ready(() =>{
 
     SDK.Items.getItems((err, items) => {
         if(err) throw err;
+        const titleHTML = `
+                    <div>
+                        <Button id="sandwich">Sandwich</Button>
+                        <Button id="dessert">Dessert</Button>
+                        <Button id="drinks">Drinks</Button>
+                    </div>
+                
+                `;
+        $itemList.append(titleHTML);
+
+        let type = 0;
+        $("#sandwich").click(() => {
+            type = 2;
+            window.location.reload();
+
+
+        });
+
+        $("#dessert").click(() => {
+            type = 3;
+            window.location.reload();
+        });
+
+        console.log(type);
+
         items.forEach((item) =>{
-            const itemHtml = `
+
+
+            if(item.itemType === type) {
+
+
+                const itemHtml = `
         <div class="col-lg-4 item-container">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -34,8 +64,12 @@ $(document).ready(() =>{
             
             `;
 
-            $itemList.append(itemHtml);
+                $itemList.append(itemHtml);
+
+            }
         });
+
+
 
         $(".purchase-button").click(function() {
             const itemId = $(this).data("item-id");

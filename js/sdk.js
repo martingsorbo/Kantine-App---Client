@@ -1,5 +1,7 @@
 const SDK = {
     serverURL: "http://localhost:8080/api",
+
+    //Make a request to the server
     request: (options, cb) => {
 
         let headers = {};
@@ -26,6 +28,7 @@ const SDK = {
         });
     },
 
+    //All order methods to the server
     Orders: {
         createOrder: (items, cb) => {
             SDK.request({
@@ -105,6 +108,8 @@ const SDK = {
 
 
     },
+
+    //All methods for items to the server
     Items: {
         getItems: (cb) => {
             SDK.request({
@@ -163,6 +168,7 @@ const SDK = {
 
     },
 
+    //All methods for users to the server
     User: {
         login: (username, password, cb) => {
             SDK.request({
@@ -231,6 +237,7 @@ const SDK = {
 
     },
 
+    //Used to save data in the browser while using the client
     Storage: {
     prefix: "KantineSDK",
     persist: (key, value) => {
@@ -250,6 +257,7 @@ const SDK = {
     }
     },
 
+    //Client side cryption method to encrypt and decrypt data
     Encryption: {
         encryptDecrypt(input) {
             var enc = true;
