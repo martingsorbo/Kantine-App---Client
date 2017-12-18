@@ -5,7 +5,7 @@ $(document).ready(() =>{
     SDK.Items.getItems((err, items) => {
         if(err) throw err;
 
-        let type = 0;
+
         $("#sandwich").click(() => {
             $itemList.empty();
             type = 2;
@@ -48,6 +48,12 @@ $(document).ready(() =>{
                     $itemList.append(itemHtml);
 
                 }
+            });
+            $(".purchase-button").click(function() {
+                const itemId = $(this).data("item-id");
+                const item = items.find((item) => item.itemId === itemId);
+                SDK.Items.addToBasket(item);
+                $("#purchase-modal").modal("toggle");
             });
 
         });
@@ -95,6 +101,12 @@ $(document).ready(() =>{
 
                 }
             });
+            $(".purchase-button").click(function() {
+                const itemId = $(this).data("item-id");
+                const item = items.find((item) => item.itemId === itemId);
+                SDK.Items.addToBasket(item);
+                $("#purchase-modal").modal("toggle");
+            });
         });
 
         $("#drinks").click(() => {
@@ -140,16 +152,15 @@ $(document).ready(() =>{
 
                 }
             });
+            $(".purchase-button").click(function() {
+                const itemId = $(this).data("item-id");
+                const item = items.find((item) => item.itemId === itemId);
+                SDK.Items.addToBasket(item);
+                $("#purchase-modal").modal("toggle");
+            });
+
         });
 
-        console.log(type);
-
-        $(".purchase-button").click(function() {
-            const itemId = $(this).data("item-id");
-            const item = items.find((item) => item.itemId === itemId);
-            SDK.Items.addToBasket(item);
-            $("#purchase-modal").modal("toggle");
-        });
     });
 
     $("#purchase-modal").on("shown.bs.modal", () => {
