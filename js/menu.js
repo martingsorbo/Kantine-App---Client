@@ -16,14 +16,14 @@ $(document).ready(() =>{
        loadItems();
     });
 
-    //Get all items
+    //Function to get and print items
     function loadItems() {
         $itemList.empty();
 
         SDK.Items.getItems((err, items) => {
             if (err) throw err;
 
-            //Function to show sandwiches when clicking on that button
+
             items.forEach((item) => {
 
                 //Sort items to a specific type
@@ -63,7 +63,7 @@ $(document).ready(() =>{
 
                 }
             });
-            //Function for the purchase button on each item to add to basket
+            //Function to add items to basket
             $(".purchase-button").click(function () {
                 const itemId = $(this).data("item-id");
                 const item = items.find((item) => item.itemId === itemId);
@@ -75,7 +75,7 @@ $(document).ready(() =>{
         });
     }
 
-    //Adds the items in your basket to the modal
+    //Adds the items from your basket to the modal
     $("#purchase-modal").on("shown.bs.modal", () => {
         const basket = SDK.Storage.load("basket");
         const $modalTbody = $("#modal-tbody");
@@ -93,6 +93,8 @@ $(document).ready(() =>{
         </tr>
       `);
         });
+
+        //Function to remove item from basket
         SDK.Items.getItems((err, items) =>{
             $(".removeItem").click(function() {
                 const itemId = $(this).data("item-id");
