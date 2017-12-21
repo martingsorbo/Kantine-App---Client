@@ -30,10 +30,8 @@ $(document).ready(() => {
     });
 
     $(".logOut").click(()=>{
-        SDK.User.logOut();
         window.location.href = "index.html";
-
-
+        SDK.User.logOut();
     });
 
     $("#createViewBtn").click(()=>{
