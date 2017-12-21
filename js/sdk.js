@@ -51,7 +51,6 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/staff/getOrders",
-              data: "data",
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -66,7 +65,6 @@ const SDK = {
           SDK.request({
               method: "POST",
               url: "/staff/makeReady/"+id,
-              data: "data",
               headers: {
                   Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
@@ -83,7 +81,6 @@ const SDK = {
           SDK.request({
               method: "GET",
               url: "/user/getOrdersById/" + SDK.Storage.load("user_id"),
-              data: "data",
               headers: {Authorization: "Bearer " + SDK.Storage.load("BearerToken")
               }},
                 (err, data) => {
@@ -115,7 +112,6 @@ const SDK = {
             SDK.request({
                 method: "GET",
                 url: "/user/getItems",
-                data: "data",
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")}},
                 (err, data) => {
                     if (err) return cb(err);
@@ -214,12 +210,9 @@ const SDK = {
         },
         logOut: (cb) => {
             SDK.request({
-                url: "/start/logout",
+                url: "/start/logout/" + SDK.Storage.load("user_id"),
                 method: "POST",
                 headers:{Authorization: "Bearer " + SDK.Storage.load("BearerToken")},
-                data: "data"
-
-
             }, (err, data) => {
                 if (err) {
                     return cb(err)
@@ -262,16 +255,21 @@ const SDK = {
     Encryption: {
         encryptDecrypt(input) {
             var enc = true;
-            if(enc){
-                var key = ['Y', 'O', 'L', 'O'];
-                var output = [];
-                for(var i = 0; i < input.length; i++){
-                    var charCode = input.charCodeAt(i) ^ key[i % key.length].charCodeAt(0);
-                    output.push(String.fromCharCode(charCode));
+
+            if (input != null && input != "") {
+                if (enc) {
+                    var key = ['Y', 'O', 'L', 'O'];
+                    var output = [];
+                    for (var i = 0; i < input.length; i++) {
+                        var charCode = input.charCodeAt(i) ^ key[i % key.length].charCodeAt(0);
+                        output.push(String.fromCharCode(charCode));
+                    }
+                    return output.join("");
                 }
-                return output.join("");
-            }
-            else{
+                else {
+                    return input;
+                }
+            } else {
                 return input;
             }
         }
